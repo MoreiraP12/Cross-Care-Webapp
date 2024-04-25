@@ -56,5 +56,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "none"
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.2"
   }
 }
