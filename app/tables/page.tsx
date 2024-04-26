@@ -179,7 +179,7 @@ const TablePage = () => {
   const fetchDiseaseNames = async () => {
     try {
       const response = await fetch(
-        `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-disease-names?dataSource=${dataSource}`
+        `http://127.0.0.1:5000/get-disease-names?dataSource=${dataSource}`
       );
       if (response.ok) {
         const names = await response.json();
@@ -214,7 +214,7 @@ const TablePage = () => {
 
   const fetchPrevalence = async () => {
     try {
-      const response = await fetch(`https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-prevalence`);
+      const response = await fetch(`http://127.0.0.1:5000/get-prevalence`);
       if (response.ok) {
         const data = await response.json();
         setPrevalenceData(data);
@@ -238,7 +238,7 @@ const TablePage = () => {
     if (selectedCategory === DataCategories.TotalCounts) {
       try {
         const response = await fetch(
-          `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=pile`
+          `http://127.0.0.1:5000/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=pile`
         );
         if (response.ok) {
           const data = await response.json();
@@ -254,7 +254,7 @@ const TablePage = () => {
     } else {
       try {
         const response = await fetch(
-          `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=${dataSource}`
+          `http://127.0.0.1:5000/get-sorted-data?category=${selectedCategory}&selectedWindow=${selectedWindow}&sortKey=${sortKey}&sortOrder=${sortOrder}&page=${currentPage}&per_page=${pageSize}&selectedDiseases=${selectedDiseasesString}&dataSource=${dataSource}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -420,7 +420,7 @@ const TablePage = () => {
                 <Tab>Racial Counts</Tab>
                 <button
                   onClick={() =>
-                    (window.location.href = 'http://www.crosscare.net/docs')
+                    (window.location.href = 'http://localhost:3000/docs')
                   } // Replace this with your actual documentation page URL
                   style={{
                     backgroundColor: 'transparent',

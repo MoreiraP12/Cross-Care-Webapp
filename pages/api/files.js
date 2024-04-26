@@ -4,7 +4,7 @@ import path from 'path';
 export default function handler(req, res) {
   // Retrieve the directory from the query parameters
   const { dir = '' } = req.query;
-  const directoryPath = path.join(process.cwd(), 'data_to_show', dir);
+  const directoryPath = path.join(process.cwd(), 'public', dir);
 
   fs.readdir(directoryPath, { withFileTypes: true }, (err, files) => {
     if (err) {
