@@ -1,5 +1,5 @@
+// pages/index.tsx
 // @ts-nocheck
-
 "use client"
 import FileExplorer from '../components/FileExplorer';
 
