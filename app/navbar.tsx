@@ -13,7 +13,6 @@ const navigation = [
   { name: 'Trends', href: '/trends' },
   { name: 'Blog', href: '/blog' },
   { name: 'Downloads', href: '/downloads' },
-  { name: 'Docs', href: '/docs' },
   { name: 'Contact', href: '/contact-us' }
 ];
 
