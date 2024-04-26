@@ -304,7 +304,7 @@ const ChartPage = () => {
                 <Tab>Total Counts</Tab>
                 <button
                   onClick={() =>
-                    (window.location.href = 'http://localhost:3000/docs')
+                    (window.location.href = 'http://www.crosscare.net/docs')
                   } // Replace this with your actual documentation page URL
                   style={{
                     backgroundColor: 'transparent',
