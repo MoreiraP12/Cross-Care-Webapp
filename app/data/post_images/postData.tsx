@@ -124,19 +124,43 @@ export const postData: DataType[] = [
 
       For more detailed insights and to access our full dataset, please visit our project page at [CrossCare Downloads](https://crosscare.net/downloads).
 
-      [Continue reading about Logits and Co-Occurrences](/blog/logits-controlled)
+      [Continue reading about Logits and Co-Occurrences](/blog/logits-wild)
       `,
   },
   {
-    slug: 'we-launch-delia4',  
+    slug: 'logits-wild',  
     time: "5 min",
-    heading: 'We Launch Delia3',
-    heading2: 'Webflow this Week!',
-    authors: "Published on Startupon",
-    date: 'August 19, 2021',
+    heading: 'Models in the Wild',
+    heading2: 'Big vs Real World Data?',
+    authors: "BittermanLab",
+    date: 'August 26, 2024',
     imgSrc: '/article.png',
-    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde doloremque architecto pariatur sunt cum. Labore, eligendi ipsa consequatur impedit corrupti iure molestiae esse doloribus at officia a explicabo atque tempora!',
+    content: `
+      In our ongoing research into language models, we've also explored "models in the wild" — these are models that have been trained on diverse data sources and vary in size, alignment methods, and languages. Here's what we found about how these models predict disease prevalence in different demographic groups:
 
+      ### Key Findings
+
+      - **Limited Knowledge of Real-World Prevalence**: Across all models we tested, none showed strong understanding of the actual prevalence of diseases among different genders or races. The best models only reached a modest agreement with real-world data, suggesting that these models may not be reliable for making unbiased healthcare decisions.
+
+      - **Impact of Alignment Strategies**: We specifically looked at models like LLama2 and Mistral that underwent various alignment strategies to see if these could improve predictions. Unfortunately, none of these strategies significantly corrected the models to better reflect real-world data. Interestingly, while some strategies seemed to shift preferences between male and female or among different races, they did not consistently improve the models' accuracy in predicting disease prevalence.
+
+      ![Top Ranked Gender and Race](/images/llama_top_count_race_gender.png)
+      _Top ranked gender and race subgroups across diseases using Llama series models across languages._
+
+      ### Variation Across Languages
+
+      - **Differences in Gender and Race Representation**: The models showed varying preferences for gender and race depending on the language of the templates used. For example, some models preferred females in Chinese but males in French. Similarly, Black race was often preferred in English and Spanish templates, while White race was preferred in Chinese and French.
+
+      - **Influence of Training Data**: These differences suggest that the mix of training data, rather than just the alignment strategies, plays a crucial role in how models develop their internal beliefs about disease prevalence across demographics.
+
+      ### Conclusion
+
+      Our findings highlight the complexity of using language models to predict disease prevalence accurately across different demographic groups. The discrepancies in model predictions across languages and the limited effectiveness of alignment strategies indicate that further work is needed to make these models more reliable and unbiased tools in healthcare settings.
+
+      For a deeper dive into our research and to access the full dataset, please visit our project page at [CrossCare Downloads](https://crosscare.net/downloads).
+
+      [Continue reading about Further Model Adjustments](/blog/model-adjustments)
+      `,
   },
   {
     slug: 'we-launch-delia5',  
