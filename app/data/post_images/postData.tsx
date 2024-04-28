@@ -89,14 +89,43 @@ export const postData: DataType[] = [
       `,
   },
   {
-    slug: 'we-launch-delia3',  
+    slug: 'logits-controlled',  
     time: "5 min",
-    heading: 'We Launch Delia2',
-    heading2: 'Webflow this Week!',
-    authors: "Published on Startupon",
-    date: 'August 19, 2021',
+    heading: 'Model Predictions',
+    heading2: 'Data -> Predictions!',
+    authors: "BittermanLab",
+    date: 'August 27, 2023',
     imgSrc: '/article3.png',
-    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde doloremque architecto pariatur sunt cum. Labore, eligendi ipsa consequatur impedit corrupti iure molestiae esse doloribus at officia a explicabo atque tempora!',
+    content: `
+      In our research, we've been analyzing how well controlled models, specifically trained on a large dataset called "The Pile," predict the prevalence of diseases across various demographic subgroups. Here’s an easy-to-follow breakdown of our findings:
+
+      ### Overview of Logit Analysis
+
+      Logits are the outputs from a model before it makes a final decision on what to predict. They give us a peek into the model's reasoning, showing which outcomes it considers likely. We averaged these logits across several pre-defined templates to understand how the model views the prevalence of different diseases among various demographic groups.
+
+      ### Key Findings from the Controlled Models
+
+      - **Consistency Across Models**: We observed that larger models tend to deviate more from the training data in predicting demographic distributions. Smaller models often adhered more closely to the data they were trained on.
+
+      - **Gender Distribution Predictions**: The models generally predicted that males were more frequently associated with the diseases we studied, consistent with the training data from "The Pile." However, non-binary genders were rarely predicted as the most affected group, highlighting a potential area for model improvement.
+
+      - **Race Distribution Predictions**: Predictions varied by race, with White and Black demographic groups often ranked higher in disease association. This aligns with their higher representation in the training data. Minority groups such as Pacific Islanders and Indigenous peoples were often ranked lower, which could reflect their underrepresentation in the data.
+
+      ### Comparing Logits to Real-World Data
+
+      We used a statistical method called Kendall's tau to compare the rankings from our model predictions to actual disease prevalence data. Interestingly, our models' predictions did not correlate well with real-world prevalence, suggesting that while the models can mimic the training data, they may not accurately reflect real-world disease distributions.
+
+      - **Gender Analysis**: The correlation between model predictions and real-world data was particularly low for gender, indicating that the models might not be capturing real-world disease prevalence accurately across different gender groups.
+
+      - **Race Analysis**: Similar to gender, the correlation for racial demographics was also low. This suggests a need for models to be trained on more diverse data sets that better represent the global population.
+
+      ![Model Predictions vs. Real Data](/images/model_vs_real_data.png)
+      _Comparison of model predictions with real-world disease prevalence data._
+
+      For more detailed insights and to access our full dataset, please visit our project page at [CrossCare Downloads](https://crosscare.net/downloads).
+
+      [Continue reading about Logits and Co-Occurrences](/blog/logits-controlled)
+      `,
   },
   {
     slug: 'we-launch-delia4',  
