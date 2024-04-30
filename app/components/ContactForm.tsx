@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { sendEmail } from '@/utils/send-email';
 
 interface State {
   name: string;
@@ -37,25 +38,20 @@ export default class ContactUs extends Component<{}, State> {
       email: String(event.target.email.value),
       message: String(event.target.message.value),
     };
- 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    
+    const apiEndpoint = '/api/email';
+
+    fetch(apiEndpoint, {
+      method: 'POST',
       body: JSON.stringify(data),
-    });
- 
-    if (response.ok) {
-      console.log("Message sent successfully");
-      // reset the form
-      event.target.name.value = "";
-      event.target.email.value = "";
-      event.target.message.value = "";
-    }
-    if (!response.ok) {
-      console.log("Error sending message");
-    }
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        alert(response.message);
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
   render() {
