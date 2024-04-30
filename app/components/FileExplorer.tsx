@@ -1,4 +1,3 @@
-// components/FileExplorer.tsx
 'use client'
 
 import { useEffect, useState } from 'react';
@@ -16,7 +15,7 @@ interface FileExplorerProps {
   basePath?: string;
 }
 
-const FileExplorer: React.FC<FileExplorerProps> = ({ basePath = '' }) => {
+const FileExplorer: React.FC<FileExplorerProps> = ({ basePath = '/data-to-show' }) => {
   const [files, setFiles] = useState<FileEntry[]>([]);
   const [loading, setLoading] = useState(false);
   const [path, setPath] = useState(basePath);
@@ -36,12 +35,19 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ basePath = '' }) => {
   }, [path]);
 
   const handleDirectoryClick = (name: string) => {
-    setPath(path => path ? `${path}/${name}` : name);
+    // Validate and update the path within allowed boundaries
+    const newPath = path ? `${path}/${name}` : name;
+    if (newPath.startsWith(basePath)) {
+      setPath(newPath);
+    }
   };
 
   const goBack = () => {
+    // Go back but stay within the initial basePath
     const newPath = path.split('/').slice(0, -1).join('/');
-    setPath(newPath);
+    if (newPath.startsWith(basePath) || newPath === '') {
+      setPath(newPath);
+    }
   };
 
   const downloadFile = (file: string) => {
@@ -57,7 +63,7 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ basePath = '' }) => {
 
   return (
     <div>
-      {path && <button onClick={goBack}>
+      {path !== basePath && <button onClick={goBack}>
         <ArrowBackIcon />
       </button>}
       {loading ? (
@@ -83,8 +89,6 @@ const FileExplorer: React.FC<FileExplorerProps> = ({ basePath = '' }) => {
         </ul>
       )}
     </div>
-
-
   );
 };
 

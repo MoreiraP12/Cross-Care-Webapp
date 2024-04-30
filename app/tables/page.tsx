@@ -391,13 +391,13 @@ const TablePage = () => {
           callback={handleJoyrideCallback}
           styles={{
             buttonNext: {
-              backgroundColor: '#750014', // Example: Change the Next button to blue
+              backgroundColor: '#000', // Example: Change the Next button to blue
               color: '#fff',
               borderBlockColor: 'white',
               borderColor: 'white'
             },
             buttonBack: {
-              color: '#750014'
+              color: '#000'
             },
             options: {
               primaryColor: '#000'
