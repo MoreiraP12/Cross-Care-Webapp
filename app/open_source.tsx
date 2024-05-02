@@ -27,7 +27,7 @@ const OpenSourceSection: React.FC = () => {
           className="hover:text-blue-600"
         >
           Dr. Danielle Bitterman
-        </Link>, Director of the AIM Lab.
+        </Link>, PI of the NLP lab@Harvard AIM.
       </p>
       <p>
         Contact: <a href="mailto:dbitterman@bwh.harvard.edu" className="hover:text-blue-600">dbitterman@bwh.harvard.edu</a>

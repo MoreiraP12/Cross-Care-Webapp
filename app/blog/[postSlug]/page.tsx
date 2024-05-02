@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { postData } from '../../data/posts/postData';
 import { Card } from '@tremor/react';
 import React from 'react';
@@ -10,30 +9,51 @@ export default function Post({ params }) {
     return <h1>Post not found</h1>;
   }
 
-  const parseMarkdownHeaders = (text) => {
-    // The regex now handles optional leading spaces and ensures there is at least one space after the hash symbols.
-    const headerRegex = /^(?:\s*)(#+)\s+(.*)/gm;
+  const createContentElements = (content) => {
+    const imgRegex = /!\[.*?\]\((.*?)\)/g;
+    const urlRegex = /\[(.*?)\]\((https?:\/\/\S+)\)/g; // Updated regex to capture display name and URL
+    const headerRegex = /^(?:\s*)(#+)\s+(.*)/gm; // Regex for Markdown headers
+    let lastIndex = 0;
+    const elements = [];
+    let match;
+  
+    while ((match = imgRegex.exec(content)) !== null) {
+      // Add text before the image
+      const text = content.slice(lastIndex, match.index);
+      elements.push(...parseMarkdown(text)); // Parse Markdown in the text
+      // Add image element
+      elements.push(<img key={`img-${match[1]}`} src={`/${match[1]}`} alt="Embedded Post" className="my-4 max-w-full mx-auto p-2" />);
+      lastIndex = match.index + match[0].length;
+    }
+  
+    // Add any remaining text after the last image
+    const remainingText = content.slice(lastIndex);
+    elements.push(...parseMarkdown(remainingText));
+  
+    return elements;
+  };
+  
+  // Helper function to parse Markdown content
+  const parseMarkdown = (text) => {
+    const urlRegex = /\[(.*?)\]\((https?:\/\/\S+)\)/g; // Regex for URLs
+    const headerRegex = /^(?:\s*)(#+)\s+(.*)/gm; // Regex for Markdown headers
     const elements = [];
     let lastIndex = 0;
     let match;
   
-    while ((match = headerRegex.exec(text)) !== null) {
-      // Text before the header
+    while ((match = urlRegex.exec(text)) !== null) {
+      // Add text before the URL
       const prevText = text.slice(lastIndex, match.index).trim();
       if (prevText) elements.push(<span key={`text-${lastIndex}`}>{prevText}</span>);
-  
-      const level = match[1].length; // Number of # determines the level of the header
-      const content = match[2].trim();
-  
-      elements.push(React.createElement(`h${level}`, {
-        key: `header-${lastIndex}-${level}`,
-        className: `text-1.5xl sm:text-1.5xl font-bold`
-      }, content));
       
+      // Add URL element
+      const displayName = match[1];
+      const url = match[2];
+      elements.push(<a key={`link-${lastIndex}`} href={url} target="_blank" rel="noopener noreferrer" className="text-blue-600">{displayName}</a>);
       lastIndex = match.index + match[0].length;
     }
   
-    // Remaining text after the last header
+    // Add any remaining text after the last URL
     const remainingText = text.slice(lastIndex).trim();
     if (remainingText) elements.push(<span key={`text-${lastIndex}`}>{remainingText}</span>);
   
@@ -41,30 +61,8 @@ export default function Post({ params }) {
   };
   
 
-  const createContentElements = (content) => {
-    const imgRegex = /!\[.*?\]\((.*?)\)/g;
-    const urlRegex = /\[(.*?)\]\((https?:\/\/\S+)\)/g;
-    let lastIndex = 0;
-    const elements = [];
-    let match;
-
-    while ((match = imgRegex.exec(content)) !== null) {
-      // Text before the image
-      const text = content.slice(lastIndex, match.index);
-      elements.push(...parseMarkdownHeaders(text)); // Parse headers in the text
-      // Add image element
-      elements.push(<img key={`img-${match[1]}`} src={`/${match[1]}`} alt="Embedded Post" className="my-4 max-w-full mx-auto p-2" />);
-      lastIndex = match.index + match[0].length;
-    }
-
-    // Add any remaining text after the last image
-    const remainingText = content.slice(lastIndex);
-    elements.push(...parseMarkdownHeaders(remainingText));
-
-    return elements;
-  };
-
   const contentElements = createContentElements(post.content);
+
   return (
     <section className="flex-col justify-center items-center space-y-6 pb-8 pt-5 md:pb-12 md:pt-5 lg:pb-32 lg:pt-5">
       <div className="flex flex-col items-center px-40">
@@ -90,10 +88,10 @@ export default function Post({ params }) {
 
               <div className="mx-auto max-w-7xl sm:py-4 lg:px-8">
                 <h5 className="text-0.5xl sm:text-1xl" style={{ display: 'flex', alignItems: 'center' }}>
-                    Written by 
-                    <span className="text-0.5xl sm:text-1xl font-bold" style={{ marginLeft: '4px' }}>
-                        {post.authors}
-                    </span>
+                  Written by 
+                  <span className="text-0.5xl sm:text-1xl font-bold" style={{ marginLeft: '4px' }}>
+                      {post.authors}
+                  </span>
                 </h5>
 
                 <br />

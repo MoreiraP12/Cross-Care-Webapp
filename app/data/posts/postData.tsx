@@ -19,11 +19,11 @@ export const postData: DataType[] = [
       date: 'April 30, 2023',
       imgSrc: '/home.png',
       content: `
-      ## What is CrossCare?
+      ##What is CrossCare?
 
       CrossCare is a research initiative that explores the world of large language models (LLMs), specifically focusing on their applications in healthcare. 
 
-      ### The Importance of Benchmarks
+      ###The Importance of Benchmarks
 
       Benchmarks play a crucial role in evaluating the performance, limitations, and robustness of LLMs. Well-known benchmarks like GLUE and SuperGLUE have been foundational in assessing language understanding and task performance. However, the challenges today go beyond these scopes, touching on aspects like domain knowledge, safety, hallucinations, and biases, especially in sensitive areas like healthcare. These issues are crucial because they can influence disparities in healthcare outcomes and the quality of care delivered.
 
@@ -90,7 +90,7 @@ export const postData: DataType[] = [
     imgSrc: '/pythia_mamba_top_count_match.png',
     content: `
     
-    ### Logits Rank vs Co-occurrence
+    ###Logits Rank vs Co-occurrence
     
     Here, we look at how different models (Pythia/Mamba) rank diseases based on demographic factors like gender and race. We compared two methods: one based on the model's internal calculations (logits), and the other based on how often diseases and demographics appear together in a large dataset called ThePile.
     
@@ -102,7 +102,7 @@ export const postData: DataType[] = [
     
     ![Top ranked gender and race subgroups across diseases](pythia_mamba_top_count_match.png)
     
-    ### Logits Rank vs Co-occurrence vs Real Prevalence
+    ###Logits Rank vs Co-occurrence vs Real Prevalence
     
     In this part, we compared the model's rankings with real-world prevalence data. Surprisingly, we found that the model's rankings did not match up with how often diseases actually occur in different demographic groups. This suggests that the models may not be accurately reflecting real-world medical knowledge.
     

@@ -649,21 +649,6 @@ const TablePage = () => {
                           </span>
                         )}
                       </TableHeaderCell>
-                      <TableHeaderCell
-                        className="text-right"
-                        onClick={() => handleSort('pacific islander')}
-                      >
-                        Pacific Islander
-                        {sortKey === 'pacific islander' && (
-                          <span style={{ marginLeft: '8px' }}>
-                            {sortOrder === 'asc' ? (
-                              <ArrowDownwardIcon />
-                            ) : (
-                              <ArrowUpwardIcon />
-                            )}
-                          </span>
-                        )}
-                      </TableHeaderCell>
 
                       <TableHeaderCell
                         className="text-right"
@@ -680,6 +665,24 @@ const TablePage = () => {
                           </span>
                         )}
                       </TableHeaderCell>
+
+                      <TableHeaderCell
+                        className="text-right"
+                        onClick={() => handleSort('pacific islander')}
+                      >
+                        Pacific Islander
+                        {sortKey === 'pacific islander' && (
+                          <span style={{ marginLeft: '8px' }}>
+                            {sortOrder === 'asc' ? (
+                              <ArrowDownwardIcon />
+                            ) : (
+                              <ArrowUpwardIcon />
+                            )}
+                          </span>
+                        )}
+                      </TableHeaderCell>
+
+                      
                     </>
                   )}
                 </TableRow>
@@ -825,9 +828,6 @@ const TablePage = () => {
                           )}
                         </TableCell>
                         <TableCell className="text-right">
-                          {item['pacific islander']}
-                        </TableCell>
-                        <TableCell className="text-right">
                           <span title="Dataset count">
                             {item['native american/indigenous']}
                           </span>
@@ -849,6 +849,10 @@ const TablePage = () => {
                             </span>
                           )}
                         </TableCell>
+                        <TableCell className="text-right">
+                          {item['pacific islander']}
+                        </TableCell>
+                        
                       </>
                     )}
                   </TableRow>
