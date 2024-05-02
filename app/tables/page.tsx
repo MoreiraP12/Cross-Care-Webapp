@@ -517,13 +517,15 @@ const TablePage = () => {
                 borderRadius: '5px'
               }}
             >
-              <p>* numbers in blue are related to real world prevalence.</p>
+              <p>* numbers in blue are related to real world prevalence (age-adjusted to per 10,000 people)</p>
             </div>
 
             <Table className="mt-4">
               <TableHead>
                 <TableRow>
-                  <TableHeaderCell onClick={() => handleSort('disease')}>
+                  <TableHeaderCell 
+                    className="text-left"
+                    onClick={() => handleSort('disease')}>
                     Disease
                     {sortKey === 'disease' && (
                       <span style={{ marginLeft: '8px' }}>
@@ -589,6 +591,7 @@ const TablePage = () => {
                   {selectedCategory === DataCategories.RacialCounts && (
                     <>
                       <TableHeaderCell
+                        className="text-right"
                         onClick={() => handleSort('white/caucasian')}
                       >
                         White/Caucasian
@@ -603,11 +606,12 @@ const TablePage = () => {
                         )}
                       </TableHeaderCell>
                       <TableHeaderCell
+                        className="text-right"
                         onClick={() => handleSort('black/african american')}
                       >
                         Black/African American
                         {sortKey === 'black/african american' && (
-                          <span style={{ marginLeft: '8px' }}>
+                          <span style={{ marginLeft: '0px' }}>
                             {sortOrder === 'asc' ? (
                               <ArrowDownwardIcon />
                             ) : (
@@ -616,7 +620,9 @@ const TablePage = () => {
                           </span>
                         )}
                       </TableHeaderCell>
-                      <TableHeaderCell onClick={() => handleSort('asian')}>
+                      <TableHeaderCell 
+                        className="text-right"
+                        onClick={() => handleSort('asian')}>
                         Asian
                         {sortKey === 'asian' && (
                           <span style={{ marginLeft: '8px' }}>
@@ -629,6 +635,7 @@ const TablePage = () => {
                         )}
                       </TableHeaderCell>
                       <TableHeaderCell
+                        className="text-right"
                         onClick={() => handleSort('hispanic/latino')}
                       >
                         Hispanic/Latino
@@ -643,6 +650,7 @@ const TablePage = () => {
                         )}
                       </TableHeaderCell>
                       <TableHeaderCell
+                        className="text-right"
                         onClick={() => handleSort('pacific islander')}
                       >
                         Pacific Islander
@@ -658,6 +666,7 @@ const TablePage = () => {
                       </TableHeaderCell>
 
                       <TableHeaderCell
+                        className="text-right"
                         onClick={() => handleSort('native american/indigenous')}
                       >
                         Native American/Indigenous
