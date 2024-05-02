@@ -113,7 +113,7 @@ const ChartPage = () => {
   };
 
   const initialDiseaseList = [
-    "arthritis", "asthma", "bronchitis", "cardiovascular disease", "chronic kidney disease", "coronary artery disease", "covid-19", "deafness", "diabetes", "hypertension", "liver failure", "mental illness", "mi", "perforated ulcer", "visual anomalies"
+    " mi ", "arthritis", "asthma", "bronchitis", "cardiovascular disease", "chronic kidney disease", "coronary artery disease", "covid-19", "deafness", "diabetes", "hypertension", "liver failure", "mental illness", "perforated ulcer", "visual anomalies"
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -155,7 +155,6 @@ const ChartPage = () => {
       );
       if (response.ok) {
         const fetchedData = await response.json();
-        console.log("Data to show: ", fetchedData);
         setDataToShow(fetchedData); // Set transformed data
       } else {
         console.error('Server error:', response.status);
@@ -206,18 +205,18 @@ const ChartPage = () => {
   
   
   const fetchAdditionalChartData = async () => {
-    const selectedDiseasesString = selectedDiseases.join(',');
+    if (!dataToShow.length) return; // Ensure there's data in the first graph
+  
+    const diseasesInFirstGraph = dataToShow.map(item => item.disease).join(',');
+    
     try {
       const response = await fetch(
-        `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-prevalence?category=${selectedCategory}&selectedDiseases=${selectedDiseasesString}`
+        `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-prevalence?category=${selectedCategory}&selectedDiseases=${diseasesInFirstGraph}`
       );
       if (response.ok) {
         const fetchedData = await response.json();
-        console.log('Additional Chart Data:', fetchedData);
         const transformedData = transformData(fetchedData);
-        console.log('Transformed Data:', transformedData);
         setAdditionalChartData(transformedData);
-
       } else {
         console.error('Server error:', response.status);
       }
@@ -225,9 +224,24 @@ const ChartPage = () => {
       console.error('Network error:', error);
     }
   };
+  
+  // Make sure to call this function whenever dataToShow changes
   useEffect(() => {
     fetchAdditionalChartData();
-  }, [selectedCategory, sortKey, sortOrder, currentPage, selectedDiseases]);
+  }, [dataToShow]); // Now depends on dataToShow to re-fetch whenever it changes
+  
+  const getSortedAdditionalChartData = () => {
+    if (!dataToShow.length) return additionalChartData; // Return original if no reference order
+  
+    // Create a map for quick lookup of order
+    const orderMap = new Map(dataToShow.map((item, index) => [item.disease, index]));
+  
+    // Sort additional data based on the first graph's disease order
+    return additionalChartData.slice().sort((a, b) => {
+      return (orderMap.get(a.disease) || 0) - (orderMap.get(b.disease) || 0);
+    });
+  };
+  
 
   // Determine display names based on selected category
   let displayNames = {};
@@ -559,7 +573,7 @@ const ChartPage = () => {
               </div>
               <BarChart
                 className="mt-4 h-80"
-                data={additionalChartData}
+                data={getSortedAdditionalChartData()}
                 index="disease"
                 categories={chartCategories}
                 colors={chartColors}
