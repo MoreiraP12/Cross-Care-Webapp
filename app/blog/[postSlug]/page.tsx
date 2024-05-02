@@ -1,7 +1,7 @@
 // @ts-nocheck
-
-import { postData } from '../../data/post_images/postData';
+import { postData } from '../../data/posts/postData';
 import { Card } from '@tremor/react';
+import React from 'react';
 
 export default function Post({ params }) {
   const post = postData.find((post) => post.slug === params.postSlug);
@@ -10,18 +10,48 @@ export default function Post({ params }) {
     return <h1>Post not found</h1>;
   }
 
-  // Function to create elements from content with images and URLs with optional display names
+  const parseMarkdownHeaders = (text) => {
+    // The regex now handles optional leading spaces and ensures there is at least one space after the hash symbols.
+    const headerRegex = /^(?:\s*)(#+)\s+(.*)/gm;
+    const elements = [];
+    let lastIndex = 0;
+    let match;
+  
+    while ((match = headerRegex.exec(text)) !== null) {
+      // Text before the header
+      const prevText = text.slice(lastIndex, match.index).trim();
+      if (prevText) elements.push(<span key={`text-${lastIndex}`}>{prevText}</span>);
+  
+      const level = match[1].length; // Number of # determines the level of the header
+      const content = match[2].trim();
+  
+      elements.push(React.createElement(`h${level}`, {
+        key: `header-${lastIndex}-${level}`,
+        className: `text-1.5xl sm:text-1.5xl font-bold`
+      }, content));
+      
+      lastIndex = match.index + match[0].length;
+    }
+  
+    // Remaining text after the last header
+    const remainingText = text.slice(lastIndex).trim();
+    if (remainingText) elements.push(<span key={`text-${lastIndex}`}>{remainingText}</span>);
+  
+    return elements;
+  };
+  
+
   const createContentElements = (content) => {
     const imgRegex = /!\[.*?\]\((.*?)\)/g;
-    const urlRegex = /\[(.*?)\]\((https?:\/\/\S+)\)/g; // Updated regex to capture display name and URL
+    const urlRegex = /\[(.*?)\]\((https?:\/\/\S+)\)/g;
     let lastIndex = 0;
     const elements = [];
     let match;
 
     while ((match = imgRegex.exec(content)) !== null) {
-      // Add text before the image
+      // Text before the image
       const text = content.slice(lastIndex, match.index);
-      elements.push(...createLinkElements(text, urlRegex)); // Parse URLs in the text
+      elements.push(...parseMarkdownHeaders(text)); // Parse headers in the text
       // Add image element
       elements.push(<img key={`img-${match[1]}`} src={`/${match[1]}`} alt="Embedded Post" className="my-4 max-w-full mx-auto p-2" />);
       lastIndex = match.index + match[0].length;
@@ -29,32 +59,7 @@ export default function Post({ params }) {
 
     // Add any remaining text after the last image
     const remainingText = content.slice(lastIndex);
-    elements.push(...createLinkElements(remainingText, urlRegex));
-
-    return elements;
-  };
-
-  // Helper function to replace URLs in text with anchor tags, using optional display names
-  const createLinkElements = (text, regex) => {
-    const elements = [];
-    let lastIdx = 0;
-    let urlMatch;
-
-    while ((urlMatch = regex.exec(text)) !== null) {
-      // Add previous text
-      if (urlMatch.index > lastIdx) {
-        elements.push(<span key={`text-${lastIdx}`}>{text.slice(lastIdx, urlMatch.index)}</span>);
-      }
-      // Add link element
-      const displayName = urlMatch[1] || urlMatch[2]; // Use the display name if provided, otherwise use the URL
-      elements.push(<a key={`link-${urlMatch[2]}`} href={urlMatch[2]} target="_blank" rel="noopener noreferrer" className="text-blue-600 ">{displayName}</a>);
-      lastIdx = urlMatch.index + urlMatch[0].length;
-    }
-
-    // Add any remaining text
-    if (lastIdx < text.length) {
-      elements.push(<span key={`text-${lastIdx}`}>{text.slice(lastIdx)}</span>);
-    }
+    elements.push(...parseMarkdownHeaders(remainingText));
 
     return elements;
   };

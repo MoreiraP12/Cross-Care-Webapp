@@ -5,7 +5,7 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { postData } from '../data/post_images/postData'; 
+import { postData } from '../data/posts/postData'; 
 
 export default class GridDisplay extends Component {
     render() {
@@ -25,33 +25,32 @@ export default class GridDisplay extends Component {
                         <h3 className="text-4xl sm:text-6xl font-bold">Our latest posts.</h3>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4 pt-4">
+                    <div className="grid grid-cols-3 gap-4 pt-4 ">
                         {postData.map((item, i) => (
-                            <div key={i} className='bg-white m-3 p-3 shadow-lg rounded-3xl relative'>
-                            <div className="relative">
-                                <Image src={item.imgSrc} alt="Article image" width={400} height={300} className="m-2" />
+                            <div key={i} className='bg-white m-3 p-3 shadow-lg rounded-3xl relative flex flex-col justify-between'>
+                                <div className="flex justify-center" style={{ maxWidth: '350px', margin: '0 auto' }}>
+    <Image src={item.imgSrc} alt="Article image" width={300} height={300} style={{ maxWidth: '100%', height: 'auto' }} />
+  </div>
+                                <h4 className='text-2xl font-bold pt-6 text-black'>{item.heading}</h4>
+                                <h5 className='text-2xl pt-1 text-black'>{item.heading2}</h5>
+                                <div className="flex items-end" style={{justifyContent:'space-between'}}>
+                                    <div>
+                                        <h3 className='text-base font-normal pt-6 pb-2 opacity-75'>{item.authors}</h3>
+                                        <h3 className='text-base font-normal pb-1 opacity-75'>{item.date}</h3>
+                                    </div>
+                                    <div>
+                                    <Link href={`../blog/${item.slug}`}>
+                                    <h3 className="bg-black text-white py-3 px-5 text-sm rounded-full">
+                                        {item.time} read
+                                    </h3>
+                                    </Link>
+                                    </div>
+                                </div>
                             </div>
-                           
-                            <h4 className='text-2xl font-bold pt-6 text-black'>{item.heading}</h4>
-                            <h4 className='text-2xl font-bold pt-1 text-black'>{item.heading2}</h4>
-                            <div className="flex items-end" style={{justifyContent:'space-between'}}>
-                                <div>
-                                    <h3 className='text-base font-normal pt-6 pb-2 opacity-75'>{item.authors}</h3>
-                                    <h3 className='text-base font-normal pb-1 opacity-75'>{item.date}</h3>
-                                </div>
-                                <div>
-                                <Link href={`../blog/${item.slug}`}>
-                                  <h3 className="bg-black text-white py-3 px-5 text-sm rounded-full">
-                                    {item.time} read
-                                  </h3>
-                                </Link>
-                                </div>
-                             </div>
+                            
+                            ))}
                         </div>
-                        
-                        ))}
                     </div>
-                </div>
             </div>
         );
     }

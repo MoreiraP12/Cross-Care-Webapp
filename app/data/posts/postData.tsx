@@ -12,12 +12,12 @@ export interface DataType {
 export const postData: DataType[] = [
     {   
       slug: 'crosscare-intro',  
-      time: "5 min",
+      time: "3 min",
       heading: 'What is CrossCare?',
       heading2: 'Start Here',
       authors: "BittermanLab",
       date: 'April 30, 2023',
-      imgSrc: '/article.png',
+      imgSrc: '/home.png',
       content: `
       ## What is CrossCare?
 
@@ -42,11 +42,11 @@ export const postData: DataType[] = [
       - Examining how these biases are represented across different models, regardless of their size or architecture.
       - Comparing model-derived perceptions to real-world data to spotlight the inconsistencies.
 
-      This website ([crosscare.net](https://crosscare.net)), allows users to explore this data further and download detailed findings for use in further research on model interpretability and robustness.
+      This website ( [crosscare.net](https://crosscare.net) ), allows users to explore this data further and download detailed findings for use in further research on model interpretability and robustness.
 
       This research not only illuminates the biases present in LLMs but also equips researchers and practitioners with the necessary tools to develop more equitable and effective NLP systems for healthcare.
 
-      [Continue reading about what we found in language models training data...](/blog/pile-counts)
+      [Continue reading about what we found in language models training data...](https://crosscare.net/blog/pile-counts)
       `,
   },
   {
@@ -65,14 +65,14 @@ export const postData: DataType[] = [
 
       "The Pile" is an 825 GB English text corpus designed for pre-training autoregressive LLMs, the same style as chatGPT.  Our analysis builds on previous works to count how often a specific demographic keyword is mentioned near a disease keyword. We repeat this process throughout the whole of the dataset for different diseases and demographic words to get the final totals across different window sizes. In addition, we collected Real-world prevalence using the National Health Interview Survey results.
 
-      ![Workflow](/crosscare-flowchart-cropped.svg)
+      ![Workflow](crosscare-flowchart-cropped.svg)
       
       ### Findings
 
       - **Variation Across Windows**: Our analysis showed consistent disease rankings across different token window sizes (50, 100, and 250). This consistency confirms the robustness of our findings.
       - **Demographic Distributions**: We observed notable disparities in the dataset's representation of different demographic groups compared to real-world disease prevalence data. For instance, White individuals were overrepresented, while Pacific Islanders and Indigenous groups were underrepresented.
 
-      ![Disease Ranking by Demographic](/disease_rank_demographic.png)
+      ![Disease Ranking by Demographic](disease_rank_demographic.png)
       _Comparison of disease rankings between the Pile, LLM logits, and real-world data._
 
       Visit our project page at [CrossCare Downloads](https://crosscare.net/downloads) to explore our methods and results in detail and access the full data set.
@@ -86,7 +86,7 @@ export const postData: DataType[] = [
     heading: 'Model Predictions',
     heading2: 'Data -> Predictions!',
     authors: "BittermanLab",
-    date: 'August 27, 2023',
+    date: 'April 30, 2024',
     imgSrc: '/pythia_mamba_top_count_match.png',
     content: `
     
@@ -125,7 +125,7 @@ export const postData: DataType[] = [
     heading: 'Models in the Wild',
     heading2: 'Big vs Real World Data?',
     authors: "BittermanLab",
-    date: 'August 26, 2024',
+    date: 'April 29, 2024',
     imgSrc: '/llama_top_count_race_gender.png',
     content: `
       ### Models in the Wild
