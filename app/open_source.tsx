@@ -22,12 +22,12 @@ const OpenSourceSection: React.FC = () => {
     </p>
     <div className="text-muted-foreground max-w-[85%] text-center sm:text-lg sm:leading-7">
       <p>
-        Led by <Link
+        Led by the <Link
           href="https://aim.hms.harvard.edu/team/danielle-bitterman"
           className="hover:text-blue-600"
         >
-          Dr. Danielle Bitterman
-        </Link>, PI of the NLP lab@Harvard AIM.
+          Bitterman lab
+        </Link> at the AIM Program, Mass General Brigham
       </p>
       <p>
         Contact: <a href="mailto:dbitterman@bwh.harvard.edu" className="hover:text-blue-600">dbitterman@bwh.harvard.edu</a>
