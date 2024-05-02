@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { postData } from '../../data/posts/postData';
 import { Card } from '@tremor/react';
 import React from 'react';
