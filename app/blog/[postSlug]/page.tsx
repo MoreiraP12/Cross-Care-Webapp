@@ -1,8 +1,47 @@
-//@ts-nocheck
+// pages/index.js
+'use client'
 
-import { postData } from '../../data/posts/postData';
-import { Card } from '@tremor/react';
 import React from 'react';
+import { Card } from '@tremor/react';
+import { postData } from '../../data/posts/postData';
+
+function processMarkdown(markdownText) {
+  const lines = markdownText.split('\n');
+  return lines.map(line => {
+    line = line.trim(); // Trim whitespace
+
+    // Handle empty lines
+    if (line === '') {
+      return '<br />';
+    }
+
+    // Process headings and lists
+    if (line.startsWith('## ')) {
+      return `<h2>${line.substring(3)}</h2>`;
+    } else if (line.startsWith('### ')) {
+      return `<h3>${line.substring(4)}</h3>`;
+    } else if (line.startsWith('- ')) {
+      return `<li>${line.substring(2)}</li>`;
+    } else {
+      // Handle text, links, and bold
+      let processedLine = line
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert **text** to <strong>text</strong>
+        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>'); // Convert [text](url) to <a href="url">text</a>
+
+      // Wrap the line in <p> if it wasn't converted to a header or list item
+      return `<p>${processedLine}</p>`;
+    }
+  }).join('');
+}
+// React component to render Markdown
+const CustomMarkdownRenderer = ({ markdownText }) => {
+  const htmlContent = processMarkdown(markdownText);
+  
+  return (
+    <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+  );
+};
+
 
 export default function Post({ params }) {
   const post = postData.find((post) => post.slug === params.postSlug);
@@ -11,61 +50,8 @@ export default function Post({ params }) {
     return <h1>Post not found</h1>;
   }
 
-  const createContentElements = (content) => {
-    const imgRegex = /!\[.*?\]\((.*?)\)/g;
-    const urlRegex = /\[(.*?)\]\((https?:\/\/\S+)\)/g; // Updated regex to capture display name and URL
-    const headerRegex = /^(?:\s*)(#+)\s+(.*)/gm; // Regex for Markdown headers
-    let lastIndex = 0;
-    const elements = [];
-    let match;
-  
-    while ((match = imgRegex.exec(content)) !== null) {
-      // Add text before the image
-      const text = content.slice(lastIndex, match.index);
-      elements.push(...parseMarkdown(text)); // Parse Markdown in the text
-      // Add image element
-      elements.push(<img key={`img-${match[1]}`} src={`/${match[1]}`} alt="Embedded Post" className="my-4 max-w-full mx-auto p-2" />);
-      lastIndex = match.index + match[0].length;
-    }
-  
-    // Add any remaining text after the last image
-    const remainingText = content.slice(lastIndex);
-    elements.push(...parseMarkdown(remainingText));
-  
-    return elements;
-  };
-  
-  // Helper function to parse Markdown content
-  const parseMarkdown = (text) => {
-    const urlRegex = /\[(.*?)\]\((https?:\/\/\S+)\)/g; // Regex for URLs
-    const headerRegex = /^(?:\s*)(#+)\s+(.*)/gm; // Regex for Markdown headers
-    const elements = [];
-    let lastIndex = 0;
-    let match;
-  
-    while ((match = urlRegex.exec(text)) !== null) {
-      // Add text before the URL
-      const prevText = text.slice(lastIndex, match.index).trim();
-      if (prevText) elements.push(<span key={`text-${lastIndex}`}>{prevText}</span>);
-      
-      // Add URL element
-      const displayName = match[1];
-      const url = match[2];
-      elements.push(<a key={`link-${lastIndex}`} href={url} target="_blank" rel="noopener noreferrer" className="text-blue-600">{displayName}</a>);
-      lastIndex = match.index + match[0].length;
-    }
-  
-    // Add any remaining text after the last URL
-    const remainingText = text.slice(lastIndex).trim();
-    if (remainingText) elements.push(<span key={`text-${lastIndex}`}>{remainingText}</span>);
-  
-    return elements;
-  };
-  
-
-  const contentElements = createContentElements(post.content);
-
   return (
+    
     <section className="flex-col justify-center items-center space-y-6 pb-8 pt-5 md:pb-12 md:pt-5 lg:pb-32 lg:pt-5">
       <div className="flex flex-col items-center px-40">
         <Card>
@@ -97,9 +83,7 @@ export default function Post({ params }) {
                 </h5>
 
                 <br />
-                <article>
-                  {contentElements}
-                </article>
+                <CustomMarkdownRenderer markdownText={post.content} />
               </div>
             </div>
           </div>
@@ -108,3 +92,4 @@ export default function Post({ params }) {
     </section>
   );
 }
+

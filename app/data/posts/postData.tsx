@@ -19,11 +19,11 @@ export const postData: DataType[] = [
       date: 'April 30, 2023',
       imgSrc: '/home.png',
       content: `
-      ##What is CrossCare?
+      ## What is CrossCare?
 
-      CrossCare is a research initiative that explores the world of large language models (LLMs), specifically focusing on their applications in healthcare. 
+      CrossCare is a **research** initiative that explores the world of large language models (LLMs), specifically focusing on their applications in healthcare. 
 
-      ###The Importance of Benchmarks
+      ### The Importance of Benchmarks
 
       Benchmarks play a crucial role in evaluating the performance, limitations, and robustness of LLMs. Well-known benchmarks like GLUE and SuperGLUE have been foundational in assessing language understanding and task performance. However, the challenges today go beyond these scopes, touching on aspects like domain knowledge, safety, hallucinations, and biases, especially in sensitive areas like healthcare. These issues are crucial because they can influence disparities in healthcare outcomes and the quality of care delivered.
 
@@ -84,7 +84,7 @@ export const postData: DataType[] = [
     slug: 'logits-controlled',  
     time: "5 min",
     heading: 'Model Predictions',
-    heading2: 'Data -> Predictions!',
+    heading2: 'Data → Predictions!',
     authors: "BittermanLab",
     date: 'April 30, 2024',
     imgSrc: '/pythia_mamba_top_count_match.png',
