@@ -15,24 +15,27 @@ function processMarkdown(markdownText) {
       return '<br />';
     }
 
-    // Process headings and lists
+    // Handle inline formatting
+    line = line
+      .replace(/!\[(.*?)\]\((.*?)\)\s*"_([^"]*)_"$/g, '<figure><img style="max-width: 40em" class="my-4 max-w-full mx-auto p-2" src="$2" alt="$1" /><figcaption>$3</figcaption></figure>') // Convert images with captions
+      .replace(/!\[(.*?)\]\((.*?)\)/g, '<img style="max-width: 40em;" class="my-4 max-w-full mx-auto p-2" src="$2" alt="$1" />') // Convert images without captions
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert bold
+      .replace(/\[(.*?)\]\((.*?)\)/g, '<a class="text-blue-600" href="$2">$1</a>'); // Convert links
+
+    // Now handle block elements
     if (line.startsWith('## ')) {
-      return `<h2>${line.substring(3)}</h2>`;
+      return `<h2 class="text-3xl sm:text-4xl font-bold">${line.substring(3)}</h2>`;
     } else if (line.startsWith('### ')) {
-      return `<h3>${line.substring(4)}</h3>`;
+      return `<h3 class="text-2xl sm:text-3xl font-bold">${line.substring(4)}</h3>`;
     } else if (line.startsWith('- ')) {
       return `<li>${line.substring(2)}</li>`;
     } else {
-      // Handle text, links, and bold
-      let processedLine = line
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert **text** to <strong>text</strong>
-        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>'); // Convert [text](url) to <a href="url">text</a>
-
-      // Wrap the line in <p> if it wasn't converted to a header or list item
-      return `<p>${processedLine}</p>`;
+      // Wrap the remaining text in <p> tags if it wasn't a header, list item, or doesn't contain an image or figure
+      return line.includes('<img') || line.includes('<figure') ? line : `<p>${line}</p>`;
     }
   }).join('');
 }
+
 // React component to render Markdown
 const CustomMarkdownRenderer = ({ markdownText }) => {
   const htmlContent = processMarkdown(markdownText);

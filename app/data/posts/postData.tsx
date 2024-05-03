@@ -72,8 +72,7 @@ export const postData: DataType[] = [
       - **Variation Across Windows**: Our analysis showed consistent disease rankings across different token window sizes (50, 100, and 250). This consistency confirms the robustness of our findings.
       - **Demographic Distributions**: We observed notable disparities in the dataset's representation of different demographic groups compared to real-world disease prevalence data. For instance, White individuals were overrepresented, while Pacific Islanders and Indigenous groups were underrepresented.
 
-      ![Disease Ranking by Demographic](disease_rank_demographic.png)
-      _Comparison of disease rankings between the Pile, LLM logits, and real-world data._
+      ![Disease Ranking by Demographic](../disease_rank_demographic.png) "_Comparison of disease rankings between the Pile, LLM logits, and real-world data._"
 
       Visit our project page at [CrossCare Downloads](https://crosscare.net/downloads) to explore our methods and results in detail and access the full data set.
       
@@ -90,7 +89,7 @@ export const postData: DataType[] = [
     imgSrc: '/pythia_mamba_top_count_match.png',
     content: `
     
-    ###Logits Rank vs Co-occurrence
+    ### Logits Rank vs Co-occurrence
     
     Here, we look at how different models (Pythia/Mamba) rank diseases based on demographic factors like gender and race. We compared two methods: one based on the model's internal calculations (logits), and the other based on how often diseases and demographics appear together in a large dataset called ThePile.
     
@@ -100,15 +99,15 @@ export const postData: DataType[] = [
     
     We also noticed discrepancies in how the model ranked different races. For instance, Hispanic was often ranked lower by the model compared to Indigenous, which was more common in ThePile's data.
     
-    ![Top ranked gender and race subgroups across diseases](pythia_mamba_top_count_match.png)
+    ![Top ranked gender and race subgroups across diseases](../pythia_mamba_top_count_match.png)
     
-    ###Logits Rank vs Co-occurrence vs Real Prevalence
+    ### Logits Rank vs Co-occurrence vs Real Prevalence
     
     In this part, we compared the model's rankings with real-world prevalence data. Surprisingly, we found that the model's rankings did not match up with how often diseases actually occur in different demographic groups. This suggests that the models may not be accurately reflecting real-world medical knowledge.
     
     However, we did find that the models tended to align better with ThePile's co-occurrence data than with real-world prevalence. This means that while the models weren't great at predicting real-world disease prevalence, they were somewhat better at reflecting how often diseases and demographics appear together in large datasets.
     
-    ![Kendall's tau of mamba and pythia's logits vs co-occurrence, and real prevalence](pythia_mamba_real_logits_pile.png)
+    ![Kendall's tau of mamba and pythia's logits vs co-occurrence, and real prevalence](../pythia_mamba_real_logits_pile.png)
     
     ### Rank vs Co-occurrence counts
     
@@ -128,18 +127,19 @@ export const postData: DataType[] = [
     date: 'April 29, 2024',
     imgSrc: '/llama_top_count_race_gender.png',
     content: `
-      ### Models in the Wild
+        ## Models in the Wild
+
         In this section, we delve into how various models perform in real-world scenarios, considering factors like size, alignment method, and language. We found that none of the models we tested—regardless of their size or alignment method—had a strong understanding of real-world disease prevalence based on gender or race. This lack of understanding could potentially lead to incorrect or biased decisions in healthcare settings.
         
-        #### Variation Across Alignment Strategies
+        ### Variation Across Alignment Strategies
         
         We examined how different alignment strategies affected the performance of the LLama2 70b series models concerning race and gender. Surprisingly, none of the alignment methods or in-domain continued pre-training improved the base models' accuracy in reflecting real-world prevalence. In fact, some alignment strategies seemed to influence the models' decisions in unexpected ways. For instance, certain alignment methods increased the preference for females over males and vice versa for certain racial groups.
         
         We observed similar trends across different models, such as Mistral and Qwen, where alignment methods didn't significantly alter the models' rankings of races or genders. However, models that underwent specific alignment methods or continued pre-training on medical domain data showed more noticeable variations in their rankings.
         
-        ![Top ranked gender and race subgroups across diseases using the LLama series](llama_top_count_race_gender.png)
+        ![Top ranked gender and race subgroups across diseases using the LLama series](../llama_top_count_race_gender.png)
         
-        #### Models' Representation Across Different Languages
+        ### Models' Representation Across Different Languages
         
         We also noticed differences in how models represented genders and races across different languages. For example, models generally showed a preference toward females in Chinese but males in French. Similarly, the racial preferences varied depending on the language, with templates in English and Spanish favoring Black race, while those in Chinese and French favored White race.
         
