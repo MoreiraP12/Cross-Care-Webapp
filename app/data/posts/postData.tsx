@@ -123,7 +123,7 @@ export const postData: DataType[] = [
     slug: 'logits-wild',  
     time: "5 min",
     heading: 'Models in the Wild',
-    heading2: 'Big vs Real World Data?',
+    heading2: 'Big Models vs Real World Data?',
     authors: "BittermanLab",
     date: 'April 29, 2024',
     imgSrc: '/llama_top_count_race_gender.png',
