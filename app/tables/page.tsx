@@ -86,57 +86,38 @@ const TablePage = () => {
             <span style={{ background: '#D3D3D3' }}>
               disparities in global health
             </span>{' '}
-            through our dataset. <strong>COVID-19</strong>, leading with{' '}
-            <span style={{ background: '#D3D3D3' }}>141,099 cases</span>,
-            showcases the biases in attention and resources compared to other
-            diseases.
+            through our dataset. <strong>Diabetes</strong> is a good example of how this disparities might affect model reasoning.
+            It showcases the biases in attention and resources.
           </p>
           <p style={{ marginBottom: '16px' }}>
             {' '}
-            Diseases like infections, diabetes, and mood disorders highlight the
+            Diseases like infections, covid-19, and mood disorders highlight the
             story of{' '}
             <span style={{ background: '#D3D3D3' }}>unequal focus</span>.
             Let&apos;s dive into the data together.
           </p>
-          <p>
-            🔍 <strong>Begin your journey</strong> towards understanding{' '}
-            <span style={{ background: '#D3D3D3' }}>global health equity</span>.
-          </p>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '10px'
-            }}
-          >
-            <img
-              style={{ height: '100px' }}
-              src="./corona.png"
-              alt="Italian Trulli"
-            />
-          </div>
         </div>
       ),
       placement: 'center'
     },
     {
       target: '.tab-list > :nth-child(1)',
-      content: 'Select one or multiple diseases to filter the data.',
+      content: 'In this tab you will be able to check total counts across the pile dataset.',
       placement: 'bottom'
     },
     {
-      target: '.window-select',
+      target: '.tab-list > :nth-child(3)',
       content:
-        'Choose a window option to view data aggregated over different time frames.',
+        'In this tab you will be able to check total counts across the multiple datasets and window sizes. You can also see the real world prevalence of certain diseases (highlighted in blue)',
       placement: 'bottom'
     },
     {
-      target: '.sort-select',
-      content: 'Sort the data based on different criteria.',
+      target: 'body',
+      content: 'Let us start by changing the dataset to pile',
       placement: 'bottom'
     },
     {
-      target: '.download-button',
+      target: '.btn mt-4',
       content: 'Download the displayed data as a JSON file.',
       placement: 'bottom'
     }
@@ -380,7 +361,7 @@ const TablePage = () => {
 
   return (
     <>
-      {isClient && (
+      {/* {isClient && (
         <Joyride
           continuous
           run={runTour}
@@ -404,7 +385,7 @@ const TablePage = () => {
             }
           }}
         />
-      )}
+      )} */}
       <section className="flex-col justify-center items-center space-y-6 pb-8 pt-5 md:pb-12 md:pt-5 lg:pb-32 lg:pt-5">
         <div className="flex flex-col items-center px-40">
           <Card>
