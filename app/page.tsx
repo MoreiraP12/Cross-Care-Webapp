@@ -1,5 +1,8 @@
 // @ts-nocheck
-import React from 'react';
+
+'use client'
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import FeaturesSection from '../app/features';
 import OpenSourceSection from '../app/open_source';
@@ -8,6 +11,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 const IndexPage = () => {
+
+  const [copied, setCopied] = useState(false);
+  const citationText = "Author Name. (Year). Title of the Paper. Journal Name, Volume(Issue), Page Numbers. DOI";
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(citationText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);  // Reset the copied state after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy!', err);
+    }
+  };
+
   return (
     <>
       
@@ -42,9 +59,24 @@ const IndexPage = () => {
                 understand complex disease interactions and trends.
               </p>
             </div>
-            <button className="btn mt-4" style={{ flex: 'none', backgroundColor: "gray" }}> {/* Adjust the flex property as needed */}
-              <Link href="/tables">Dataset Overview</Link>
-            </button>
+            <button className="flex justify-center my-8 py-2 px-8 border border-transparent bg-black text-white py-3 px-5 text-sm rounded-full shadow-sm text-sm font-medium text-white" style={{ flex: 'none', backgroundColor: "gray" }}> {/* Adjust the flex property as needed */}
+              <Link href="/tables">Paper Pre-print</Link>
+              </button>
+            
+            
+            {/* Citation Section with Tailwind */}
+            <div className="mt-8 p-4 border rounded shadow-lg bg-gray-100 text-gray-800 mx-auto max-w-4xl relative">
+              <button
+                  onClick={handleCopy}
+                  className={`absolute -mt-8 left-4 px-4 py-2 rounded text-white ${copied ? 'rounded-full shadow-sm bg-green-500' : 'bg-gray-700 rounded-full shadow-sm hover:bg-gray-700'} shadow-lg`}
+                  style={{ transition: 'all 0.3s ease' }}
+                >
+                  {copied ? 'Copied!' : 'Copy Citation'}
+              </button>
+              <br />
+              <p className="text-lg mb-4">{citationText}</p>
+              
+            </div>
           </div>
 
           {/* Social Media Icons on the Right */}
