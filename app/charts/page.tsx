@@ -113,7 +113,21 @@ const ChartPage = () => {
   };
 
   const initialDiseaseList = [
-    " mi ", "arthritis", "asthma", "bronchitis", "cardiovascular disease", "chronic kidney disease", "coronary artery disease", "covid-19", "deafness", "diabetes", "hypertension", "liver failure", "mental illness", "perforated ulcer", "visual anomalies"
+    ' mi ',
+    'arthritis',
+    'asthma',
+    'bronchitis',
+    'cardiovascular disease',
+    'chronic kidney disease',
+    'coronary artery disease',
+    'covid-19',
+    'deafness',
+    'diabetes',
+    'hypertension',
+    'liver failure',
+    'mental illness',
+    'perforated ulcer',
+    'visual anomalies'
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -181,34 +195,34 @@ const ChartPage = () => {
 
   const transformData = (data) => {
     const groupedByDisease = {};
-  
-    data.forEach(item => {
+
+    data.forEach((item) => {
       const { count, demographic, disease } = item;
-  
+
       if (!groupedByDisease[disease]) {
-        groupedByDisease[disease] = { disease: disease };  
+        groupedByDisease[disease] = { disease: disease };
       }
-  
+
       // Initialize the demographic count if it does not exist
       if (!groupedByDisease[disease][demographic]) {
         groupedByDisease[disease][demographic] = 0;
       }
-  
+
       // Sum the counts for each demographic
       groupedByDisease[disease][demographic] = count;
     });
-  
+
     // Convert the groupedByDisease object into an array of objects
     return Object.values(groupedByDisease);
   };
-  
-  
-  
+
   const fetchAdditionalChartData = async () => {
     if (!dataToShow.length) return; // Ensure there's data in the first graph
-  
-    const diseasesInFirstGraph = dataToShow.map(item => item.disease).join(',');
-    
+
+    const diseasesInFirstGraph = dataToShow
+      .map((item) => item.disease)
+      .join(',');
+
     try {
       const response = await fetch(
         `https://cryptic-forest-27973-570a247a72c1.herokuapp.com/get-prevalence?category=${selectedCategory}&selectedDiseases=${diseasesInFirstGraph}`
@@ -224,24 +238,25 @@ const ChartPage = () => {
       console.error('Network error:', error);
     }
   };
-  
+
   // Make sure to call this function whenever dataToShow changes
   useEffect(() => {
     fetchAdditionalChartData();
   }, [dataToShow]); // Now depends on dataToShow to re-fetch whenever it changes
-  
+
   const getSortedAdditionalChartData = () => {
     if (!dataToShow.length) return additionalChartData; // Return original if no reference order
-  
+
     // Create a map for quick lookup of order
-    const orderMap = new Map(dataToShow.map((item, index) => [item.disease, index]));
-  
+    const orderMap = new Map(
+      dataToShow.map((item, index) => [item.disease, index])
+    );
+
     // Sort additional data based on the first graph's disease order
     return additionalChartData.slice().sort((a, b) => {
       return (orderMap.get(a.disease) || 0) - (orderMap.get(b.disease) || 0);
     });
   };
-  
 
   // Determine display names based on selected category
   let displayNames = {};
@@ -375,8 +390,10 @@ const ChartPage = () => {
         />
       )} */}
       <section className="flex-col justify-center items-center space-y-6 pb-8 pt-5 md:pb-12 md:pt-5 lg:pb-32 lg:pt-5">
-        <div className="flex flex-col items-center" style={{paddingRight: `8vw`, paddingLeft: `8vw`}}>
-
+        <div
+          className="flex flex-col items-center"
+          style={{ paddingRight: `8vw`, paddingLeft: `8vw` }}
+        >
           <Card>
             <TabGroup
               index={Object.values(DataCategories).indexOf(selectedCategory)}
@@ -424,7 +441,7 @@ const ChartPage = () => {
                 value={selectedDiseases}
                 onValueChange={setSelectedDiseases}
                 placeholder="Select Diseases"
-                style={{ flex: '30%', marginRight: '20px'}}
+                style={{ flex: '30%', marginRight: '20px' }}
               >
                 {diseaseNames.map((disease) => (
                   <MultiSelectItem key={disease} value={disease}>
@@ -435,23 +452,24 @@ const ChartPage = () => {
 
               {/* Window Dropdown */}
               {selectedCategory !== DataCategories.TotalCounts && (
-                  <Select
-                    value={selectedWindow}
-                    onValueChange={setSelectedWindow}
-                    style={{
-                      flex: '20%',
-                      marginLeft: '20px',
-                      marginRight: '20px',
-                      opacity: dataSource === DataSourceOptions.Pile ? 0.3 : 1,  // Shadowed effect when disabled
-                      pointerEvents: dataSource === DataSourceOptions.Pile ? 'none' : 'auto',  // Disables interaction
-                    }}
-                  >
-                    {Object.entries(WindowOptions).map(([key, value]) => (
-                      <SelectItem key={key} value={value}>
-                        {key}
-                      </SelectItem>
-                    ))}
-                  </Select>
+                <Select
+                  value={selectedWindow}
+                  onValueChange={setSelectedWindow}
+                  style={{
+                    flex: '20%',
+                    marginLeft: '20px',
+                    marginRight: '20px',
+                    opacity: dataSource === DataSourceOptions.Pile ? 0.3 : 1, // Shadowed effect when disabled
+                    pointerEvents:
+                      dataSource === DataSourceOptions.Pile ? 'none' : 'auto' // Disables interaction
+                  }}
+                >
+                  {Object.entries(WindowOptions).map(([key, value]) => (
+                    <SelectItem key={key} value={value}>
+                      {key}
+                    </SelectItem>
+                  ))}
+                </Select>
               )}
 
               {/* Sort Key Dropdown */}
@@ -518,7 +536,10 @@ const ChartPage = () => {
           </Card>
         </div>
         {selectedCategory !== DataCategories.TotalCounts && (
-          <div className="flex flex-col items-center px-40">
+          <div
+            className="flex flex-col items-center"
+            style={{ paddingRight: `8vw`, paddingLeft: `8vw` }}
+          >
             <Card>
               <TabGroup
                 index={Object.values(DataCategories).indexOf(selectedCategory)}
@@ -534,7 +555,9 @@ const ChartPage = () => {
               </TabGroup>
               <Title>Real World Representativeness</Title>
               <Subtitle>
-                The actual occurrence rate of a condition or characteristic within a specific population, observed in everyday, non-experimental settings.
+                The actual occurrence rate of a condition or characteristic
+                within a specific population, observed in everyday,
+                non-experimental settings.
               </Subtitle>
 
               <div

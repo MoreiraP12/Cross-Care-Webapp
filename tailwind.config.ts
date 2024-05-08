@@ -60,7 +60,38 @@ export default {
         'tremor-default': ['0.875rem', { lineHeight: '1.25rem' }],
         'tremor-title': ['1.125rem', { lineHeight: '1.75rem' }],
         'tremor-metric': ['1.875rem', { lineHeight: '2.25rem' }]
-      }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            'h1': {
+              marginTop: '1em',
+              marginBottom: '0.5em',
+            },
+            'h2': {
+              marginTop: '1em',
+              marginBottom: '0.5em',
+            },
+            'h3': {
+              marginTop: '1em',
+              marginBottom: '0.5em',
+            },
+            'p': {
+              'text-align': 'justify',
+              marginTop: '0.5em',
+              marginBottom: '0.5em',
+            },
+            'ul': {
+              marginTop: '0.5em',
+              marginBottom: '0.5em',
+            },
+            'ol': {
+              marginTop: '0.5em',
+              marginBottom: '0.5em',
+            },
+          },
+        },
+      },
     }
   },
   safelist: [
@@ -92,5 +123,6 @@ export default {
         /^(fill-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/
     },
   ],
-  plugins: [require('@headlessui/tailwindcss')]
+  plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/typography')],
+
 } satisfies Config;

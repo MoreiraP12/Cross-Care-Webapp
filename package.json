@@ -20,6 +20,7 @@
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "@tailwindcss/typography": "^0.5.13",
     "@tremor/react": "^3.10.0",
     "@types/js-cookie": "^3.0.5",
     "@types/node": "20.8.9",

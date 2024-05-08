@@ -14,7 +14,7 @@ const features = [
     delta: 'RedPajama + Pile',
     status: 'Large-Scale Datasets',
     color: 'emerald',
-    text: 'More than X trillion tokens analyzed.',
+    text: 'More than 1 trillion tokens analyzed.',
     icon: IoAnalyticsSharp
   },
   {
@@ -23,7 +23,7 @@ const features = [
     delta: 'Demographic-Disease-Drug',
     status: 'Representational Harm',
     color: 'blue',
-    text: 'Race and Gender representation across X clinical terms.',
+    text: 'Race and Gender representation across 89 clinical terms.',
     icon: IoLanguage
   },
   {
@@ -41,10 +41,16 @@ export default function FeaturesSection() {
   return (
     <section id="features" className="py-8 md:py-12 lg:py-32">
       <div className="text-center max-w-[64rem] mx-auto">
-        <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl" style={{color: "white"}} >
+        <h2
+          className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+          style={{ color: 'white' }}
+        >
           Features
         </h2>
-        <p className="max-w-[85%] mx-auto mt-4 text-muted-foreground sm:text-lg md:text-xl" style={{color: "white"}}>
+        <p
+          className="max-w-[85%] mx-auto mt-4 text-muted-foreground sm:text-lg md:text-xl"
+          style={{ color: 'white' }}
+        >
           Explore the cutting-edge features of our project, showcasing the power
           of data in understanding complex health issues.
         </p>
