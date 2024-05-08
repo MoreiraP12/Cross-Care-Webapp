@@ -49,17 +49,17 @@ const IndexPage = () => {
                 textStroke: '2px white', // experimental, might not be needed depending on browser support
                 color: 'transparent',
               }}>
-                Cross-Care
+                CrossCare
               <span style={{ WebkitTextStroke: '0px', color: 'white' }}> Dataset</span> 
           </h1>
             <div style={{ paddingRight: "0%"}}>
               <p className="max-w-[42rem] py-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-                The Cross-Care Dataset provides comprehensive insights into <span style={{textDecoration: "underline", textDecorationColor: "white" }} >co-occurrence patterns</span> of various diseases. This dataset is
+                The CrossCare Dataset provides comprehensive insights into <span style={{textDecoration: "underline", textDecorationColor: "white" }} >co-occurrence patterns</span> of various diseases. This dataset is
                 invaluable for researchers and healthcare professionals seeking to
                 understand complex disease interactions and trends.
               </p>
             </div>
-            <button className="flex justify-center my-8 py-2 px-8 border border-transparent bg-black text-white py-3 px-5 text-sm rounded-full shadow-sm text-sm font-medium text-white" style={{ flex: 'none', backgroundColor: "gray" }}> {/* Adjust the flex property as needed */}
+            <button className="flex justify-center py-2 px-8 border border-transparent bg-black text-white py-3 px-5 text-sm rounded-full shadow-sm text-sm font-medium text-white" style={{ flex: 'none', backgroundColor: "gray" }}> {/* Adjust the flex property as needed */}
               <Link href="/tables">Paper Pre-print</Link>
               </button>
             
@@ -68,7 +68,7 @@ const IndexPage = () => {
             <div className="mt-8 p-4 border rounded shadow-lg bg-gray-100 text-gray-800 mx-auto max-w-4xl relative">
               <button
                   onClick={handleCopy}
-                  className={`absolute -mt-8 left-4 px-4 py-2 rounded text-white ${copied ? 'rounded-full shadow-sm bg-green-500' : 'bg-gray-700 rounded-full shadow-sm hover:bg-gray-700'} shadow-lg`}
+                  className={`absolute -mt-8 left-4 px-4 py-2 rounded py-2 px-8 py-3 px-5 text-white ${copied ? 'rounded-full shadow-sm bg-green-500' : 'bg-gray-700 rounded-full shadow-sm hover:bg-gray-700'} shadow-lg`}
                   style={{ transition: 'all 0.3s ease' }}
                 >
                   {copied ? 'Copied!' : 'Copy Citation'}
