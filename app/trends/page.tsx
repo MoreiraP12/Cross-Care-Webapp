@@ -305,7 +305,7 @@ const ChartPage = () => {
                 {/* <button
                   onClick={() =>
                     (window.location.href = 'https://www.crosscare.net/docs')
-                  } // Replace this with your actual documentation page URL
+                  }
                   style={{
                     backgroundColor: 'transparent',
                     border: 'none',
@@ -315,7 +315,6 @@ const ChartPage = () => {
                   title="Documentation"
                 >
                   <FontAwesomeIcon icon={faInfoCircle} size="lg" />{' '}
-                  {/* You can adjust the size (lg, 2x, etc.) */}
                 </button> */}
               </TabList>
             </TabGroup>
