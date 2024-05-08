@@ -399,7 +399,7 @@ const TablePage = () => {
                 <Tab>Total Counts</Tab>
                 <Tab>Gender Counts</Tab>
                 <Tab>Racial Counts</Tab>
-                <button
+                {/* <button
                   onClick={() =>
                     (window.location.href = 'https://www.crosscare.net/docs')
                   } // Replace this with your actual documentation page URL
@@ -413,7 +413,7 @@ const TablePage = () => {
                 >
                   <FontAwesomeIcon icon={faInfoCircle} size="lg" />{' '}
                   {/* You can adjust the size (lg, 2x, etc.) */}
-                </button>
+                </button> */}
               </TabList>
             </TabGroup>
 

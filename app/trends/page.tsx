@@ -302,7 +302,7 @@ const ChartPage = () => {
             >
               <TabList className="mb-4" variant="line">
                 <Tab>Total Counts</Tab>
-                <button
+                {/* <button
                   onClick={() =>
                     (window.location.href = 'https://www.crosscare.net/docs')
                   } // Replace this with your actual documentation page URL
@@ -316,7 +316,7 @@ const ChartPage = () => {
                 >
                   <FontAwesomeIcon icon={faInfoCircle} size="lg" />{' '}
                   {/* You can adjust the size (lg, 2x, etc.) */}
-                </button>
+                </button> */}
               </TabList>
             </TabGroup>
             <Title>Representation Trends</Title>
