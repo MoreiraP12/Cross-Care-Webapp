@@ -56,7 +56,7 @@ export const postData: DataType[] = [
     heading2: 'Subgroup-Disease Associations',
       authors: "BittermanLab",
       date: 'April 29, 2023',
-      imgSrc: '/crosscare-flowchart-cropped.svg',
+      imgSrc: '/crosscare-flowchart-cropped.png',
       content: `
       
       Our first step was to look for how common the co-occurrences of biomedical keywords were within the Pile dataset. 
@@ -65,7 +65,7 @@ export const postData: DataType[] = [
 
       "The Pile" is an 825 GB English text corpus designed for pre-training autoregressive LLMs, the same style as chatGPT.  Our analysis builds on previous works to count how often a specific demographic keyword is mentioned near a disease keyword. We repeat this process throughout the whole of the dataset for different diseases and demographic words to get the final totals across different window sizes. In addition, we collected Real-world prevalence using the National Health Interview Survey results.
 
-      ![Workflow](crosscare-flowchart-cropped.svg)
+      ![Workflow](../crosscare-flowchart-cropped.png)
       
       ### Findings
 
