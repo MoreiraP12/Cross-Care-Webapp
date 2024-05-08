@@ -55,7 +55,7 @@ const IndexPage = () => {
                 understand complex disease interactions and trends.
               </p>
             </div>
-            <button className="flex justify-center items-center mx-auto py-2 px-8 bg-gray-700 border border-transparent text-white py-3 px-5 text-sm rounded-full shadow-sm font-medium text-white md:mx-0 md:text-center"> {/* Adjust the flex property as needed */}
+            <button className="flex justify-center items-center mx-auto py-2 px-8 bg-gray-700 border border-transparent py-3 px-5 text-sm rounded-full shadow-sm font-medium text-white"> {/* Adjust the flex property as needed */}
               <Link href="/tables">Paper Pre-print</Link>
             </button>
             
