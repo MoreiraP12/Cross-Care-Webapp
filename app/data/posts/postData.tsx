@@ -13,15 +13,15 @@ export const postData: DataType[] = [
     {   
       slug: 'crosscare-intro',  
       time: "3 min",
-      heading: 'What is CrossCare?',
+      heading: 'What is Cross-Care?',
       heading2: 'Start Here',
       authors: "BittermanLab",
       date: 'April 30, 2023',
       imgSrc: '/home.png',
       content: `
-      ## What is CrossCare?
+      ## What is Cross-Care?
 
-      CrossCare is a **research** initiative that explores the world of large language models (LLMs), specifically focusing on their applications in healthcare. 
+      Cross-Care is a **research** initiative that explores the world of large language models (LLMs), specifically focusing on their applications in healthcare. 
 
       ### The Importance of Benchmarks
 
@@ -74,7 +74,7 @@ export const postData: DataType[] = [
 
       ![Disease Ranking by Demographic](../disease_rank_demographic.png) "_Comparison of disease rankings between the Pile, LLM logits, and real-world data._"
 
-      Visit our project page at [CrossCare Downloads](https://crosscare.net/downloads) to explore our methods and results in detail and access the full data set.
+      Visit our project page at [Cross-Care Downloads](https://crosscare.net/downloads) to explore our methods and results in detail and access the full data set.
       
       [Continue reading about what models thought was the most common ...](/blog/logits-controlled)
       `,
@@ -113,7 +113,7 @@ export const postData: DataType[] = [
     
     Finally, we looked at how the frequency of diseases mentioned in ThePile affected the model's performance. We found that the models performed similarly across different quartiles of disease co-occurrence counts. This suggests that the model's accuracy didn't improve based on how often diseases were mentioned in the dataset.
     
-    For more detailed insights and to access our full dataset, please visit our project page at [CrossCare Downloads](https://crosscare.net/downloads).
+    For more detailed insights and to access our full dataset, please visit our project page at [Cross-Care Downloads](https://crosscare.net/downloads).
 
     [Continue reading about Logits and Co-Occurrences](/blog/logits-wild)
       `,

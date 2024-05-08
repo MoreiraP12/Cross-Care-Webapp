@@ -73,7 +73,7 @@ const Sidebar = () => {
           </ul>
         </li>
         <li className="font-medium">
-          <p className="py-2 font-semibold">CrossCare</p>
+          <p className="py-2 font-semibold">Cross-Care</p>
           <ul className="space-y-1 p-4">
             <li>
               <Link
@@ -96,7 +96,7 @@ const Sidebar = () => {
                 className="text-gray-900 hover:text-blue-600 font-medium block py-2 px-4 rounded transition duration-150 ease-in-out"
                 href="/docs/cross-care/examples"
               >
-                CrossCare Examples
+                Cross-Care Examples
               </Link>
             </li>
           </ul>

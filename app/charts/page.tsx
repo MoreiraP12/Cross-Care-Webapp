@@ -375,7 +375,8 @@ const ChartPage = () => {
         />
       )} */}
       <section className="flex-col justify-center items-center space-y-6 pb-8 pt-5 md:pb-12 md:pt-5 lg:pb-32 lg:pt-5">
-        <div className="flex flex-col items-center px-40">
+        <div className="flex flex-col items-center" style={{paddingRight: `8vw`, paddingLeft: `8vw`}}>
+
           <Card>
             <TabGroup
               index={Object.values(DataCategories).indexOf(selectedCategory)}
@@ -413,7 +414,9 @@ const ChartPage = () => {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                flex: '70%'
+                width: '100%', // Make the div fill the width of its parent
+                height: '100%', // Make the div fill the height of its parent
+                overflow: 'auto' // Add scrolling to the div
               }}
             >
               {/* Disease Multiselect */}

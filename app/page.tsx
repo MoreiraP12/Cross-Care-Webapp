@@ -1,7 +1,6 @@
 // @ts-nocheck
 
 'use client'
-
 import React, { useState } from 'react';
 import Link from 'next/link';
 import FeaturesSection from '../app/features';
@@ -27,8 +26,6 @@ const IndexPage = () => {
 
   return (
     <>
-      
-
       {/* Video Background */}
       <div className="fixed top-0 left-0 w-full h-full z-[-1] flex justify-center items-center" style={{ backgroundColor: 'black' }}>
         <video autoPlay loop muted playsInline style={{ width: '50%', height: 'auto', maxWidth: '50%', objectFit: 'cover', marginLeft: '35%', marginTop: '10%'}}>
@@ -37,47 +34,46 @@ const IndexPage = () => {
         </video>
       </div>
 
-
-      <section className="flex justify-center items-center space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+      <section className="flex justify-center items-center space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center text-center md:text-left max-w-[64rem] w-full gap-4">
           
           {/* Title on the Left */}
           <div style={{color: "white"}}className="flex-1">
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
               style={{
-                WebkitTextStroke: '2px white', // for Chrome, Safari
-                textStroke: '2px white', // experimental, might not be needed depending on browser support
+                WebkitTextStroke: '2px white',
+                textStroke: '2px white',
                 color: 'transparent',
               }}>
-                CrossCare
+                Cross-Care
               <span style={{ WebkitTextStroke: '0px', color: 'white' }}> Dataset</span> 
           </h1>
             <div style={{ paddingRight: "0%"}}>
               <p className="max-w-[42rem] py-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-                The CrossCare Dataset provides comprehensive insights into <span style={{textDecoration: "underline", textDecorationColor: "white" }} >co-occurrence patterns</span> of various diseases. This dataset is
+                The Cross-Care Dataset provides comprehensive insights into <span style={{textDecoration: "underline", textDecorationColor: "white" }} >co-occurrence patterns</span> of various diseases. This dataset is
                 invaluable for researchers and healthcare professionals seeking to
                 understand complex disease interactions and trends.
               </p>
             </div>
-            <button className="flex justify-center py-2 px-8 border border-transparent bg-black text-white py-3 px-5 text-sm rounded-full shadow-sm text-sm font-medium text-white" style={{ flex: 'none', backgroundColor: "gray" }}> {/* Adjust the flex property as needed */}
+            <button className="flex justify-center items-center mx-auto py-2 px-8 bg-gray-700 border border-transparent text-white py-3 px-5 text-sm rounded-full shadow-sm font-medium text-white md:mx-0 md:text-center"> {/* Adjust the flex property as needed */}
               <Link href="/tables">Paper Pre-print</Link>
-              </button>
+            </button>
             
             
             {/* Citation Section with Tailwind */}
-            <div className="mt-8 p-4 border rounded shadow-lg bg-gray-100 text-gray-800 mx-auto max-w-4xl relative">
+            <div className="pb-8 mt-8 border rounded shadow-lg bg-gray-100 text-gray-800 mx-auto relative flex flex-col justify-center" style={{ fontSize: '0.875rem', margin: '20px auto', width: '40vh' }}>
               <button
-                  onClick={handleCopy}
-                  className={`absolute -mt-8 left-4 px-4 py-2 rounded py-2 px-8 py-3 px-5 text-white ${copied ? 'rounded-full shadow-sm bg-green-500' : 'bg-gray-700 rounded-full shadow-sm hover:bg-gray-700'} shadow-lg`}
-                  style={{ transition: 'all 0.3s ease' }}
-                >
-                  {copied ? 'Copied!' : 'Copy Citation'}
+                onClick={handleCopy}
+                className="flex justify-center items-center mx-auto py-2 px-8 bg-gray-500 text-white rounded-full shadow-sm font-medium"
+                style={{ position: 'relative', top: '-15px', transition: 'all 0.3s ease' }}
+              >
+                {copied ? 'Copied!' : 'Copy Citation'}
               </button>
               <br />
-              <p className="text-lg mb-4">{citationText}</p>
-              
+              <p className="text-center" style={{ lineHeight: '1.5' }}>{citationText}</p>
             </div>
           </div>
+
 
           {/* Social Media Icons on the Right */}
           <div className="flex-1 flex justify-end">
@@ -87,20 +83,22 @@ const IndexPage = () => {
                   style={{
                     backgroundColor: 'transparent',
                     color: "#E5E4E2",
-                    width: '25px'
+                    width: '20px',
+
                   }}
                 ><a href="https://www.linkedin.com/school/harvard-medical-school/" target="_blank">
-                  <FontAwesomeIcon icon={faLinkedinIn} /> </a>
+                  <FontAwesomeIcon icon={faLinkedinIn} size="2x" /> </a>
                 </div>
 
                 <div
                   style={{
                     backgroundColor: 'transparent',
                     color: '#E5E4E2',
-                    width: '25px'
+                    width: '20px',
+
                   }}
                 ><a href="https://twitter.com/aim_harvard" target="_blank">
-                  <FontAwesomeIcon icon={faXTwitter} /> </a>
+                  <FontAwesomeIcon icon={faXTwitter} size="2x"/> </a>
                 </div>
               
                 
@@ -109,7 +107,6 @@ const IndexPage = () => {
 
         </div>
       </section>
-
 
       {/* Features Section */}
       <FeaturesSection />

@@ -1,4 +1,4 @@
-# Dashboard for CrossCare
+# Dashboard for Cross-Care
 
 ## To install and run
 

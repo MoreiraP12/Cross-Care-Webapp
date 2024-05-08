@@ -17,7 +17,7 @@ export default function Toast() {
           target="_blank"
           rel="noreferrer"
         >
-          CrossCare Repo
+          Cross-Care Repo
         </a>
       </div>
     </div>
