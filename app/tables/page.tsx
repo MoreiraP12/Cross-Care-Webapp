@@ -421,9 +421,8 @@ const TablePage = () => {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                width: '100%', // Make the div fill the width of its parent
-                height: '100%', // Make the div fill the height of its parent
-                overflow: 'auto' // Add scrolling to the div
+                width: '100%',
+                //overflowX: 'scroll', // Enable horizontal scrolling
               }}
             >
               {/* Disease Multiselect */}

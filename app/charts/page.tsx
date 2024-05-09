@@ -415,8 +415,8 @@ const ChartPage = () => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 width: '100%', // Make the div fill the width of its parent
-                height: '100%', // Make the div fill the height of its parent
-                overflow: 'auto' // Add scrolling to the div
+                flexWrap:'wrap'
+              
               }}
             >
               {/* Disease Multiselect */}
@@ -424,7 +424,7 @@ const ChartPage = () => {
                 value={selectedDiseases}
                 onValueChange={setSelectedDiseases}
                 placeholder="Select Diseases"
-                style={{ flex: '30%', marginRight: '20px'}}
+                style={{ width: '40%', marginRight: '20px'}}
               >
                 {diseaseNames.map((disease) => (
                   <MultiSelectItem key={disease} value={disease}>
@@ -518,7 +518,7 @@ const ChartPage = () => {
           </Card>
         </div>
         {selectedCategory !== DataCategories.TotalCounts && (
-          <div className="flex flex-col items-center px-40">
+          <div className="flex flex-col items-center" style={{paddingRight: `8vw`, paddingLeft: `8vw`}}>
             <Card>
               <TabGroup
                 index={Object.values(DataCategories).indexOf(selectedCategory)}
