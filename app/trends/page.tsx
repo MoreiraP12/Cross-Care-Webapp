@@ -256,12 +256,13 @@ const ChartPage = () => {
       <button
         onClick={onClickHandler}
         style={{
-          backgroundColor: 'white',
+          backgroundColor: 'transparent',
           color: 'black',
-          flex: '20px',
-          marginLeft: '10px'
+          width: '0.7em',
+          marginInline:'1.5em',
+          marginTop: '0px',
         }}
-        className="btn mt-4"
+        className="btn"
         title="Download JSON Data"
       >
         <FileDownloadIcon />
@@ -321,21 +322,19 @@ const ChartPage = () => {
             <Title>Representation Trends</Title>
             <Subtitle>Disease counts over time.</Subtitle>
             <div
+            className='grid grid-cols-1'
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
                 width: '100%', // Make the div fill the width of its parent
-                height: '100%', // Make the div fill the height of its parent
-                overflow: 'auto' // Add scrolling to the div
               }}
             >
+              <div className='grid grid-cols-1 md:grid-cols-4 gap-3' style={{ marginTop:'1em', marginBottom:'1em'}} > 
               {/* Disease MultiSelect with value bound to selectedDiseases */}
               <MultiSelect
+              className='md:col-span-3'
                 value={selectedDiseases}
                 onValueChange={setSelectedDiseases}
                 placeholder="Select Diseases"
-                style={{ flex: '50%' }}
+                style={{  }}
               >
                 {diseaseNames.map((disease) => (
                   <MultiSelectItem key={disease} value={disease}>
@@ -348,21 +347,21 @@ const ChartPage = () => {
               <Select
                 value={dataSource}
                 onValueChange={setDataSource}
-                style={{ flex: '20%', marginLeft: '20px' }}
               >
                 {Object.entries(DataSourceOptions).map(([key, value]) => (
                   <SelectItem key={key} value={value}>
                     {key}
                   </SelectItem>
                 ))}
-              </Select>
+              </Select> 
+              </div>
 
-              {/* Time Option Select */}
-              <Select
+              <div className='grid grid-cols-1 sm:grid-cols-3 gap-3' style={{  marginBottom:'1em'}}>
+                <Select
                 value={selectedTime}
                 onValueChange={setTime}
                 placeholder="Select Time Option"
-                style={{ marginLeft: '10px', flex: '10%' }}
+                style={{  }}
               >
                 {Object.keys(TimeOptions).map((option) => (
                   <SelectItem key={option} value={TimeOptions[option]}>
@@ -372,7 +371,7 @@ const ChartPage = () => {
               </Select>
 
               {/* Year Start Input */}
-              <div style={{ marginLeft: '10px' }} className="input-wrapper">
+              <div style={{ }} className="input-wrapper">
                 <NumberInput
                   icon={CalendarIcon}
                   placeholder="Start Year"
@@ -384,7 +383,7 @@ const ChartPage = () => {
               </div>
 
               {/* Year End Input */}
-              <div style={{ marginLeft: '10px' }} className="input-wrapper">
+              <div style={{ }} className="input-wrapper">
                 <NumberInput
                   icon={CalendarIcon}
                   placeholder="End Year"
@@ -394,6 +393,9 @@ const ChartPage = () => {
                   max={new Date().getFullYear()} // Set maximum year as the current year
                 />
               </div>
+              </div>
+
+              <div className='flex flex-row'>
 
               {/* Sort Order Button */}
               <button
@@ -402,10 +404,8 @@ const ChartPage = () => {
                 }
                 className="btn mt4"
                 style={{
-                  flex: '20%',
-                  marginLeft: '10px',
-                  padding: '10px',
-                  marginTop: '0px'
+                  marginTop: '0px',
+                  width:'9em',
                 }}
               >
                 {sortOrder === 'asc' ? 'Ascending' : 'Descending'}
@@ -413,6 +413,9 @@ const ChartPage = () => {
 
               {/* Download Button with Icon */}
               {renderDownloadButton(() => downloadJsonData())}
+              </div>
+              
+
             </div>
             <LineChart
               className="mt-4 h-80"

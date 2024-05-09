@@ -417,20 +417,19 @@ const TablePage = () => {
             </TabGroup>
 
             <div
+              className='grid grid-cols-1'
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
                 width: '100%',
                 //overflowX: 'scroll', // Enable horizontal scrolling
               }}
             >
+              <div className='flex flex-row' style={{ marginTop:'1em', marginBottom:'1em'}}>
               {/* Disease Multiselect */}
               <MultiSelect
                 value={selectedDiseases}
                 onValueChange={setSelectedDiseases}
                 placeholder="Select Diseases"
-                style={{ flex: '30%', marginRight: '20px' }}
+                style={{}}
               >
                 {diseaseNames.map((disease) => (
                   <MultiSelectItem key={disease} value={disease}>
@@ -439,14 +438,27 @@ const TablePage = () => {
                 ))}
               </MultiSelect>
 
+              <button
+                onClick={() => downloadJsonData()}
+                style={{
+                  backgroundColor: 'transparent',
+                  color: 'black',
+                  width: '0.7em',
+                  marginInline:'1.5em',
+                  marginTop:'0px'
+                }}
+                className="btn mt-4"
+              >
+                <FileDownloadIcon />
+              </button>
+              </div>
+              <div className='grid grid-cols-1 sm:grid-cols-3 gap-3' style={{  marginBottom:'1em'}}> 
               {/* Window Dropdown */}
               {selectedCategory !== DataCategories.TotalCounts && (
                 <Select
                   value={selectedWindow}
                   onValueChange={setSelectedWindow}
                   style={{
-                    flex: '20%',
-                    marginLeft: '40px',
                     opacity: dataSource === DataSourceOptions.Pile ? 0.3 : 1, // Shadowed effect when disabled
                     pointerEvents:
                       dataSource === DataSourceOptions.Pile ? 'none' : 'auto' // Disables interaction
@@ -467,7 +479,7 @@ const TablePage = () => {
                   onValueChange={(newDataSource) => {
                     setDataSource(newDataSource);
                   }}
-                  style={{ flex: '20%', marginLeft: '40px' }}
+                  style={{ }}
                 >
                   {Object.entries(DataSourceOptions).map(([key, value]) => (
                     <SelectItem key={key} value={value}>
@@ -476,18 +488,11 @@ const TablePage = () => {
                   ))}
                 </Select>
               )}
+              
 
-              <button
-                onClick={() => downloadJsonData()}
-                style={{
-                  backgroundColor: 'white',
-                  color: 'black',
-                  marginLeft: '10px'
-                }}
-                className="btn mt-4"
-              >
-                <FileDownloadIcon />
-              </button>
+              
+
+              </div>
             </div>
 
             <div

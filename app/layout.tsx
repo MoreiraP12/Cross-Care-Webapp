@@ -8,8 +8,9 @@ import { Suspense } from 'react';
 export const metadata = {
   title: 'Cross-Care Dataset',
   description:
-    'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, ESLint, and Prettier.'
-};
+    'The Cross-Care Dataset provides comprehensive insights into co-occurrence patterns of various diseases. This dataset is invaluable for researchers and healthcare professionals seeking to understand complex disease interactions and trends.',
+  keywords: 'healthcare, dataset, disease co-occurrence, medical research, disease trends'
+  };
 
 export default function RootLayout({
   children

@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const navigation = [
-  { name: 'Home', href: '/' },
   { name: 'Tables', href: '/tables' },
   { name: 'Charts', href: '/charts' },
   { name: 'Trends', href: '/trends' },
@@ -42,12 +42,14 @@ function Navbar() {
             <div className="flex justify-between h-16">
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
-                  <Image
-                    src="/logo.png"
-                    alt="Logo"
-                    width={32}
-                    height={32}
-                  />
+                  <Link href="/">
+                    <Image
+                      src="/logo.png"
+                      alt="Logo"
+                      width={32}
+                      height={32}
+                    />
+                  </Link>
                 </div>
                 <div className="hidden sm:flex sm:justify-center sm:space-x-8 sm:ml-6 sm:grow">
                   {navigation.map((item) => (
