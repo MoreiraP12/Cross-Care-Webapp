@@ -12,7 +12,13 @@ import { faXTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 const IndexPage = () => {
 
   const [copied, setCopied] = useState(false);
-  const citationText = "Author Name. (Year). Title of the Paper. Journal Name, Volume(Issue), Page Numbers. DOI";
+  const citationText = "@misc{chen2024crosscare,
+      title={Cross-Care: Assessing the Healthcare Implications of Pre-training Data on Language Model Bias}, 
+      author={Shan Chen and Jack Gallifant and Mingye Gao and Pedro Moreira and Nikolaj Munch and Ajay Muthukkumar and Arvind Rajan and Jaya Kolluri and Amelia Fiske and Janna Hastings and Hugo Aerts and Brian Anthony and Leo Anthony Celi and William G. La Cava and Danielle S. Bitterman},
+      year={2024},
+      eprint={2405.05506},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}";
 
   const handleCopy = async () => {
     try {
