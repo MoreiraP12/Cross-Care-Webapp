@@ -86,17 +86,14 @@ export const postData: DataType[] = [
 
     ### Logits Rank vs Co-occurrence
     We compared two methods: one based on the model's internal calculations (logits), and the other based on how often diseases and demographics appear together in a large dataset called ThePile.
-
-    The stacked bar chart below shows how often certain genders and races are associated with different diseases. The black line indicates how often the model's top-ranked demographic matches the demographic most frequently associated with each disease in ThePile. We found that as the models got bigger, they became less accurate in reflecting the real-world distribution of demographics.
-
-    ![Top ranked gender and race subgroups across diseases](../pythia_mamba_top_count_match.png)
-
+    The stacked bar chart below (a) visually represents the frequency with which certain genders and races are associated with different diseases. Each bar in the chart is segmented to show the proportion of each demographic group’s association with various diseases. The black line overlaying the bars indicates the frequency at which the model’s top-ranked demographic aligns with the demographic most frequently associated with each disease in ThePile dataset.
+    Our analysis revealed a notable trend: as the models increased in size and complexity, their accuracy in mirroring the real-world distribution of demographics diminished. This means that larger models were less effective at accurately reflecting the actual prevalence of diseases across different demographic groups, highlighting a potential limitation in the models’ ability to generalize from the training data to real-world scenarios. This finding underscores the need for careful consideration of model size and complexity in the development and application of predictive models in healthcare.
+    
     ### Logits Rank vs Co-occurrence vs Real Prevalence
-    In this part, we compared the model's rankings with real-world prevalence data. Surprisingly, we found that the model's rankings did not match up with how often diseases actually occur in different demographic groups. This suggests that the models may not be accurately reflecting real-world medical knowledge.
-
-    However, we did find that the models tended to align better with ThePile's co-occurrence data than with real-world prevalence. This means that while the models weren't great at predicting real-world disease prevalence, they were somewhat better at reflecting how often diseases and demographics appear together in large datasets.
-
-    ![Kendall's tau of mamba and pythia's logits vs co-occurrence, and real prevalence](../pythia_mamba_real_logits_pile.png)
+    In this section, we compared the model’s rankings with real-world prevalence data (b). Surprisingly, the model’s rankings did not align with the actual occurrence of diseases in different demographic groups. This indicates that the models may not accurately reflect real-world medical knowledge.
+    However, we found that the models tended to align more closely with ThePile’s co-occurrence data than with real-world prevalence. This suggests that while the models were not particularly good at predicting real-world disease prevalence, they were somewhat better at reflecting the frequency of diseases and demographics in large datasets.
+    
+    ![Top ranked gender and race subgroups across diseases](../pythia_mamba_top_count_real_logtis_pile_slim.png)
 
     ### Rank vs Co-occurrence Counts
     Finally, we looked at how the frequency of diseases mentioned in ThePile affected the model's performance. We found that the models performed similarly across different quartiles of disease co-occurrence counts. This suggests that the model's accuracy didn't improve based on how often diseases were mentioned in the dataset.
